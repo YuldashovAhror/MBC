@@ -55,11 +55,9 @@ class BlogController extends BaseController
         ]);
         // dd('asd');
         $blogs = new Blog();
-
         if($request->file('photo')){
             $blogs['photo'] = $this->photoSave($request->file('photo'), 'image/blogs');
         }
-
         $blogs->title_uz = $request->title_uz;
         $blogs->title_ru = $request->title_ru;
         $blogs->title_en = $request->title_en;
@@ -67,12 +65,9 @@ class BlogController extends BaseController
         $blogs->description_uz = $request->description_uz;
         $blogs->description_ru = $request->description_ru;
         $blogs->description_en = $request->description_en;
-
         $blogs->save();
-
         return redirect()->route('admin.blogs.index');
     }
-
     /**
      * Display the specified resource.
      *
@@ -83,7 +78,6 @@ class BlogController extends BaseController
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -98,7 +92,6 @@ class BlogController extends BaseController
             'blog'=>$blog
         ]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -110,14 +103,12 @@ class BlogController extends BaseController
     {
         // dd('asd');
         $blogs = Blog::find($id);
-
         if($request->file('photo')){
             if(is_file(public_path($blogs->photo))){
                 unlink(public_path($blogs->photo));
             }
                 $blogs['photo'] = $this->photoSave($request->file('photo'), 'image/blogs');
         }
-
         $blogs->title_uz = $request->title_uz;
         $blogs->title_ru = $request->title_ru;
         $blogs->title_en = $request->title_en;
@@ -125,12 +116,9 @@ class BlogController extends BaseController
         $blogs->description_uz = $request->description_uz;
         $blogs->description_ru = $request->description_ru;
         $blogs->description_en = $request->description_en;
-
         $blogs->save();
-
         return redirect()->route('admin.blogs.index');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -144,9 +132,7 @@ class BlogController extends BaseController
         if(is_file(public_path($blogs->photo))){
             unlink(public_path($blogs->photo));
         }
-
         $blogs->delete();
-
         return redirect()->back();
     }
 }
