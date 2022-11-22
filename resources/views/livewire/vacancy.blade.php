@@ -7,12 +7,12 @@
 			</h2>
 			<div class="vacancy-filter">
 				<label class="vacancy-filter__item">
-					<input wire:click='changeCategory("all")' name="all" type="checkbox" checked >
+					<input wire:click='changeCategory("all")' name="all" type="checkbox" @if($check == 'all') checked @endif >
 					<span>{{__('asd.Все')}}</span>
 				</label>
                 @foreach ($categories as $category)
                     <label class="vacancy-filter__item">
-                        <input wire:click='changeCategory({{$category->id}})' name="{{$category}}" type="checkbox">
+                        <input wire:click='changeCategory({{$category->id}})' name="{{$category}}" type="checkbox" @if($check == $category->id) checked @endif>
                         <span>{{$category['name_'.$lang]}}</span>
                     </label>
                 @endforeach
@@ -46,13 +46,16 @@
                             </a>
                         </div>
                     </div>
-                @endforeach
+                @endforeach 
+                {{-- {{ $vacancies->links() }} --}}
+            
 			</div>
-			{{-- <div class="vacancy-more">
-				<a href="#">
+        
+			<div class="vacancy-more">
+				<a wire:click="paginate()">
 					{{__('asd.Показать ещё')}}
 				</a>
-			</div> --}}
+			</div>
 		</div>
 	</section>
 </div>
