@@ -52,9 +52,11 @@
 			</div>
         
 			<div class="vacancy-more">
-				<a wire:click="paginate()">
+				<button 
+                style="background: #D2AE6D; padding: 1rem 2.2rem; color: #fff; font-size: 0.9rem; font-weight: 300; border-color: #D2AE6D " 
+                wire:click="paginate()">
 					{{__('asd.Показать ещё')}}
-				</a>
+				</button>
 			</div>
 		</div>
 	</section>
