@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Изменить</button>
+            <button class="btn btn-primary" type="submit">Сохранить</button>
         </form>
     </div>
 </div>

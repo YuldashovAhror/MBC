@@ -92,7 +92,7 @@
                     <textarea class="ckeditor form-control" name="advantage_en" required=""></textarea>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Изменить</button>
+            <button class="btn btn-primary" type="submit">Сохранить</button>
         </form>
     </div>
 </div>
