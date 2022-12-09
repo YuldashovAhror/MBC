@@ -172,7 +172,7 @@
 
 	<section class="news-single">
 		<div class="news-single__banner">
-			<img src="{{$blog->photo}}" alt="news">
+			{{-- <img src="{{$blog->photo}}" alt="news"> --}}
 			<div class="container">
 				<h1 class="news-single__title">
 					{{$blog['title_'.$lang]}} 
@@ -191,6 +191,7 @@
 						<span>Назад</span>
 					</a>
 					<div class="news-single__text">
+						<img src="{{$blog->photo}}" alt="news">
 						<p>
 							{!!$blog['description_'.$lang]!!} 
 						</p>

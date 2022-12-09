@@ -25,7 +25,18 @@
 		</div>
 	</div>
 
+	{{-- <section class="career">
+		<div class="career__slogan">
+			{{__('asd.Мы поможем Вам построить путь к успеху')}}
+		</div>
+	</section> --}}
+
 	<section class="career">
+		<div class="career-video">
+			<video  pip="false" autoplay="autoplay" loop="loop" muted="muted" playsinline="" webkit-playsinline="">
+				<source  src="/video/career.mp4" type="video/mp4"> Ваш браузер не поддерживает HTML5 видео. 
+			</video>
+		</div>
 		<div class="career__slogan">
 			{{__('asd.Мы поможем Вам построить путь к успеху')}}
 		</div>
