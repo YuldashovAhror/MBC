@@ -3,8 +3,10 @@
 	<script src="/js/owl.carousel.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+    @if(\Request::segment(1) != '' )
 	<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 	<script src="/js/map.js"></script>
+    @endif
 	<script src="/js/line.js"></script>
 	<script src="/js/jquery.custom-select.js"></script>
 	<script src="/js/jquery.nicescroll.min.js"></script>

@@ -40,7 +40,7 @@
                         </svg>
                     </a>
                 </div>
-            
+            {{-- @dd($statistic) --}}
                 <div class="about-numbers wow fadeInLeft" data-wow-delay=".6s">
                     <div class="about-numbers__item">
                         <div class="about-numbers__value">
@@ -60,7 +60,7 @@
                     </div>
                     <div class="about-numbers__item">
                         <div class="about-numbers__value">
-                            <span>{{$statistic->family}}</span><small></small>
+                            <span>{{$statistic->family}}</span><small>+</small>
                         </div>
                         <div class="about-numbers__info">
                             {{__('asd.счастливых семей')}}
