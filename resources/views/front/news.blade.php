@@ -5,7 +5,7 @@
 
 <section class="offer">
 	<div class="offer-bg">
-		<img src="img/newsBg.jpg" alt="News">
+		<img src="img/news-singleBg.jpg" alt="News">
 	</div>
 	<div class="container">
 		<h1 class="offer__title">

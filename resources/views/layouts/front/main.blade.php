@@ -18,11 +18,11 @@
 @include('components.front.mobile_menu')
 
 <!-- TEL-POPUP -->
-@if(\Request::segment(1) != 'career')
+@if(\Request::segment(1) != 'career' && \Request::segment(1) != 'about' && \Request::segment(1) != 'news')
 @include('components.front.tel_popup')
 @endif
 <!-- FEEDBACK -->
-@if(\Request::segment(1) != 'career')
+@if(\Request::segment(1) != 'career' && \Request::segment(1) != 'about' && \Request::segment(1) != 'news')
 @include('components.front.feedback')
 @endif
 <!-- HEADER -->

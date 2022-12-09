@@ -42,7 +42,7 @@
                                         <button class="btn btn-xs btn-primary" type="submit"><i data-feather="edit"></i></button>
                                     </form>
                                     <div>
-                                        <button class="btn btn-xs btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter{{$blog->id}}" data-bs-original-title="" title=""><i data-feather="trash-2"></i></button>
+                                        <button class="btn btn-xs btn-danger mt-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter{{$blog->id}}" data-bs-original-title="" title=""><i data-feather="trash-2"></i></button>
                                     </div>
                                 </td>
                                 <div class="modal fade" id="exampleModalCenter{{$blog->id}}" tabindex="-1" aria-labelledby="exampleModalCenter" style="display: none;" aria-hidden="true">

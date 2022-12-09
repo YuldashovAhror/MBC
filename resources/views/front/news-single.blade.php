@@ -13,14 +13,11 @@
 	<title>Murad Buildings</title>
 </head>
 <body>
-
 	@include('components.front.mobile_menu')
-
 	@include('components.front.header')
-
 	<section class="news-single">
 		<div class="news-single__banner">
-			<img src="{{$new->photo_main}}" alt="news">
+			{{-- <img src="{{$new->photo_main}}" alt="news"> --}}
 			<div class="container">
 				<h1 class="news-single__title">
 					{{$new['title_'.$lang]}} 
@@ -39,11 +36,9 @@
 						<span>{{__('asd.Назад')}}</span>
 					</a>
 					<div class="news-single__text">
-						<p>
-							{!!$new['description_'.$lang]!!} 
-						</p>
-						
-						<img src="{{$new->photo}}" alt="img">
+						<img src="{{$new->photo_main}}" alt="news">
+						<p>{!!$new['description_'.$lang]!!}</p>
+						<img src="{{$new->photo}}" alt="news">
 					</div>
 				</div>
 				<div class="news-single__sidebar">
@@ -51,7 +46,6 @@
 						{{__('asd.Другие новости')}}
 					</div>
 					@foreach ($news as $new)
-						
 						<div class="news-item">
 							<div class="news-item__head">
 								<div class="/news-item__date">
@@ -80,72 +74,10 @@
 							</div>
 						</div>
 					@endforeach
-					{{-- <div class="news-item">
-						<div class="news-item__head">
-							<div class="news-item__date">
-								12.06.22
-							</div>
-							<div class="news-item__category">
-								Акция
-							</div>
-						</div>
-						<div class="news-item__name">
-							Строительство клубного дома KISLOROD идет полным ходом.
-							Строительство клубного дома KISLOROD идет полным ходом. 
-							Строительство клубного дома KISLOROD идет полным ходом.
-							Строительство клубного дома KISLOROD идет полным ходом.
-						</div>
-						<div class="news-item__img">
-							<img src="/img/news1.jpg" alt="news">
-						</div>
-						<div class="news-item__line">
-							<img src="/img/news.svg" alt="ico">
-						</div>
-						<div class="news-item__text">
-							Все виды работ выполняются под тщательным контролем наших специалистов, которые прилагают все усилия для того, чтобы наши счастливые обладатели квартир заселились своевременно в надежный и комфортный дом. 
-						</div>
-						<div class="news-item__btn">
-							<a href="#">
-								{{__('asd.Подробнее')}}
-							</a>
-						</div>
-					</div>
-					<div class="news-item">
-						<div class="news-item__head">
-							<div class="news-item__date">
-								12.06.22
-							</div>
-							<div class="news-item__category">
-								Акция
-							</div>
-						</div>
-						<div class="news-item__name">
-							Строительство клубного дома KISLOROD идет полным ходом.
-							Строительство клубного дома KISLOROD идет полным ходом. 
-							Строительство клубного дома KISLOROD идет полным ходом.
-							Строительство клубного дома KISLOROD идет полным ходом.
-						</div>
-						<div class="news-item__img">
-							<img src="/img/news1.jpg" alt="news">
-						</div>
-						<div class="news-item__line">
-							<img src="/img/news.svg" alt="ico">
-						</div>
-						<div class="news-item__text">
-							Все виды работ выполняются под тщательным контролем наших специалистов, которые прилагают все усилия для того, чтобы наши счастливые обладатели квартир заселились своевременно в надежный и комфортный дом. 
-						</div>
-						<div class="news-item__btn">
-							<a href="#">
-								{{__('asd.Подробнее')}}
-							</a>
-						</div>
-					</div> --}}
 				</div>
 			</div>
 		</div>
 	</section>
-	
-
 	@include('components.front.footer')
 
 	<script src="/js/jquery-3.4.1.min.js"></script>
