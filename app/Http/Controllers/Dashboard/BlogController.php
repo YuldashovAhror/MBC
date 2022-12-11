@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class BlogController extends BaseController
 {
@@ -58,6 +60,7 @@ class BlogController extends BaseController
         if($request->file('photo')){
             $blogs['photo'] = $this->photoSave($request->file('photo'), 'image/blogs');
         }
+        $slug = str_replace(' ', '_', strtolower($request->title_uz)) . '-' . Str::random(5);
         $blogs->title_uz = $request->title_uz;
         $blogs->title_ru = $request->title_ru;
         $blogs->title_en = $request->title_en;
@@ -65,6 +68,8 @@ class BlogController extends BaseController
         $blogs->description_uz = $request->description_uz;
         $blogs->description_ru = $request->description_ru;
         $blogs->description_en = $request->description_en;
+        $blogs['slug'] = $slug;
+        // $blogs->slug = Str::slug($request->title_uz);
         $blogs->save();
         return redirect()->route('admin.blogs.index');
     }
@@ -84,10 +89,10 @@ class BlogController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        // dd('asd');
-        $blog = Blog::find($id);
+        // dd($slug);
+        $blog = Blog::where('slug', $slug)->first();
         return view('dashboard.blogs.edit', [
             'blog'=>$blog
         ]);
@@ -99,16 +104,16 @@ class BlogController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        // dd('asd');
-        $blogs = Blog::find($id);
+        $blogs = Blog::where('slug', $slug)->first();
         if($request->file('photo')){
             if(is_file(public_path($blogs->photo))){
                 unlink(public_path($blogs->photo));
             }
                 $blogs['photo'] = $this->photoSave($request->file('photo'), 'image/blogs');
         }
+        $new_slug = str_replace(' ', '_', strtolower($request->title_uz)) . '-' . Str::random(5);
         $blogs->title_uz = $request->title_uz;
         $blogs->title_ru = $request->title_ru;
         $blogs->title_en = $request->title_en;
@@ -116,6 +121,7 @@ class BlogController extends BaseController
         $blogs->description_uz = $request->description_uz;
         $blogs->description_ru = $request->description_ru;
         $blogs->description_en = $request->description_en;
+        $blogs['slug'] = $new_slug;
         $blogs->save();
         return redirect()->route('admin.blogs.index');
     }

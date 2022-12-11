@@ -35,7 +35,7 @@
                                 <td >{{$team->name_uz}}</td>
                                 <td>{{$team->position_uz}}</td>
                                 <td>
-                                    <form action="{{route('admin.teams.edit', $team->id)}}" method="GET" style="display: inline;">
+                                    <form action="{{route('admin.teams.edit', $team->slug)}}" method="GET" style="display: inline;">
                                         <button class="btn btn-xs btn-primary" type="submit"><i data-feather="edit"></i></button>
                                     </form>
             

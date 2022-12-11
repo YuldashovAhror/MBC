@@ -6,16 +6,11 @@
 <div class="card">
         <div class="card-header pb-0">
             <h5>Изменить</h5>
-            {{-- @if(Session::has('message'))
-            Success
-            @endif --}}
-            {{-- <div class="alert alert-secondary" role="alert">
-                This is a primary alert—check it out!
-            </div> --}}
+            {{-- @dd($project) --}}
             <img style="padding-left: 5rem" src="{{$project->photo}}" alt="">
         </div>
         <div class="card-body">
-            <form action="{{route('admin.projects.update',$project->id)}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.projects.update',$project->slug)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 {{ method_field('put') }}
                 <div class="row g-4">

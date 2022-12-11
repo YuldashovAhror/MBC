@@ -4,14 +4,14 @@
 <div class="col-sm-6" style="padding-top: 2rem; padding-bottom: 1.5rem">
     <h3>Блоги </h3>
 </div>
+{{-- @dd($blog->slug) --}}
 <div class="card">
     <div class="card-header pb-0">
         <h5>Изменить</h5>
         <img style="padding-left: 30rem" src="{{$blog->photo}}" alt="">
     </div>
-    {{-- @dd($blog) --}}
     <div class="card-body">
-        <form action="{{route('admin.blogs.update', $blog->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('admin.blogs.update', $blog->slug)}}" method="POST" enctype="multipart/form-data">
             @csrf
             {{ method_field('put') }}
             <div class="row g-4">

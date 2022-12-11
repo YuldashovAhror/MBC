@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProjectController extends BaseController
 {
@@ -63,7 +64,7 @@ class ProjectController extends BaseController
             $projects['photo'] = $this->photoSave($request->file('photo'), 'image/projects');
         }
 
-
+        $slug = str_replace(' ', '_', strtolower($request->name_uz)) . '-' . Str::random(5);
         $projects->status_id = $request->status;
         $projects->name_uz = $request->name_uz;
         $projects->name_ru = $request->name_ru;
@@ -72,7 +73,7 @@ class ProjectController extends BaseController
         $projects->description_ru = $request->description_ru;
         $projects->description_en = $request->description_en;
         $projects->link = $request->link;
-
+        $projects['slug'] = $slug;
         $projects->save();
 
         return redirect()->route('admin.projects.index');
@@ -96,10 +97,9 @@ class ProjectController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $project = Project::find($id);
-
+        $project = Project::where('slug', $slug)->first();
         return view('dashboard.projects.edit',[
             'project'=>$project
         ]);
@@ -112,10 +112,10 @@ class ProjectController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        // dd('asd');
-        $projects = Project::find($id);
+        // dd($slug);
+        $projects = Project::where('slug', $slug)->first();;
 
         if($request->file('photo')){
             if(is_file(public_path($projects->photo))){
@@ -126,7 +126,7 @@ class ProjectController extends BaseController
         }
     
         // dd($request->all());
-
+        $new_slug = str_replace(' ', '_', strtolower($request->name_uz)) . '-' . Str::random(5);
         $projects->status_id = $request->status;
         $projects->name_uz = $request->name_uz;
         $projects->name_ru = $request->name_ru;
@@ -135,7 +135,7 @@ class ProjectController extends BaseController
         $projects->description_ru = $request->description_ru;
         $projects->description_en = $request->description_en;
         $projects->link = $request->link;
-
+        $projects['slug'] = $new_slug;
         $projects->save();
 
         return redirect()->route('admin.projects.index');

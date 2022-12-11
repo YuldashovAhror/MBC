@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TeamController extends BaseController
 {
@@ -53,18 +54,10 @@ class TeamController extends BaseController
         ]);
         
         $teams = new Team();
-        
         if($request->file('photo')){
             $teams['photo'] = $this->photoSave($request->file('photo'), 'image/teams');
         }
-        
-
-        // if($request->file('photo')){
-        //     $file= $request->file('photo');
-        //     $filename= date('YmdHi').$file->getClientOriginalName();
-        //     $file-> move(public_path('/Image/teams'), $filename);
-        //     $teams['photo']= '/Image/teams/'.$filename;
-        // }        
+        $slug = str_replace(' ', '_', strtolower($request->name_uz)) . '-' . Str::random(5);
         if ($request->hasFile('video'))
         {
             $path = $this->videoSave($request->file('video'), 'video/team');
@@ -76,7 +69,7 @@ class TeamController extends BaseController
         $teams->position_uz = $request->position_uz;
         $teams->position_ru = $request->position_ru;
         $teams->position_en = $request->position_en;
-        
+        $teams['slug'] = $slug;
         $teams->save();
         // dd($request->file('photo'));
 
@@ -100,9 +93,9 @@ class TeamController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $team = Team::find($id);
+        $team = Team::where('slug', $slug)->first();
         return view('dashboard.teams.edit', [
             'team'=>$team
         ]);
@@ -115,9 +108,9 @@ class TeamController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        $teams = Team::find($id);
+        $teams = Team::where('slug', $slug)->first();
         
         if($request->file('photo')){
             if(is_file(public_path($teams->photo))){
@@ -125,7 +118,6 @@ class TeamController extends BaseController
             }
                 $teams['photo'] = $this->photoSave($request->file('photo'), 'image/teams');
         } 
-        
         if ($request->hasFile('video'))
         {
             if(is_file(public_path($teams->video))){
@@ -134,15 +126,15 @@ class TeamController extends BaseController
             $path = $this->videoSave($request->file('video'), 'video/team');
             $teams->video = $path;
         }
+        $new_slug = str_replace(' ', '_', strtolower($request->name_uz)) . '-' . Str::random(5);
         $teams->name_uz = $request->name_uz;
         $teams->name_ru = $request->name_ru;
         $teams->name_en = $request->name_en;
         $teams->position_uz = $request->position_uz;
         $teams->position_ru = $request->position_ru;
         $teams->position_en = $request->position_en;
-
+        $teams['slug'] = $new_slug;
         $teams->save();
-
         return redirect()->route('admin.teams.index');
     }
 
@@ -154,7 +146,6 @@ class TeamController extends BaseController
      */
     public function destroy($id)
     {
-        // dd($id);
         $teams = Team::find($id);
         if(is_file(public_path($teams->photo))){
             unlink(public_path($teams->photo));

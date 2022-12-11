@@ -10,7 +10,7 @@
         <img style="padding-left: 15rem" src="{{$team->photo}}" alt="">
     </div>
     <div class="card-body">
-        <form action="{{route('admin.teams.update', $team->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('admin.teams.update', $team->slug)}}" method="POST" enctype="multipart/form-data">
             @csrf
             {{ method_field('put') }}
             <div class="row g-4">

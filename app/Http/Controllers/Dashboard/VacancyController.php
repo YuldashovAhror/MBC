@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class VacancyController extends Controller
 {
@@ -51,14 +52,13 @@ class VacancyController extends Controller
         ]);
         // dd($request->all());
         $vacancy = new Vacancy();
-
         if($request->file('photo')){
             $file= $request->file('photo');
             $filename= date('YmdHi').$file->getClientOriginalName();
             $file-> move(public_path('/Image/vacancy'), $filename);
             $vacancy['photo']= '/Image/vacancy/'.$filename;
         }
-
+        $slug = str_replace(' ', '_', strtolower($request->name_uz)) . '-' . Str::random(5);
         $vacancy->category_id = $request->category_id;
         $vacancy->name_uz = $request->name_uz;
         $vacancy->name_ru = $request->name_ru;
@@ -73,7 +73,7 @@ class VacancyController extends Controller
         $vacancy->advantage_ru = $request->advantage_ru;
         $vacancy->advantage_en = $request->advantage_en;
         $vacancy->date = $request->date;
-
+        $vacancy['slug'] = $slug;
         $vacancy->save();
 
         return redirect()->route('admin.vacancy.index');
@@ -96,9 +96,9 @@ class VacancyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $vacancy = Vacancy::find($id);
+        $vacancy = Vacancy::where('slug', $slug)->first();
         return view('dashboard.vacancy.edit', [
             'vacancy'=>$vacancy
         ]);
@@ -111,10 +111,9 @@ class VacancyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        $vacancy = Vacancy::find($id);
-
+        $vacancy = Vacancy::where('slug', $slug)->first();
         if($request->file('photo')){
             if(is_file(public_path($vacancy->photo))){
                 unlink(public_path($vacancy->photo));
@@ -124,7 +123,7 @@ class VacancyController extends Controller
             $file-> move(public_path('/Image/vacancy'), $filename);
             $vacancy['photo']= '/Image/vacancy/'.$filename;
         }
-
+        $new_slug = str_replace(' ', '_', strtolower($request->name_uz)) . '-' . Str::random(5);
         $vacancy->category_id = $request->category_id;
         $vacancy->name_uz = $request->name_uz;
         $vacancy->name_ru = $request->name_ru;
@@ -139,9 +138,8 @@ class VacancyController extends Controller
         $vacancy->advantage_ru = $request->advantage_ru;
         $vacancy->advantage_en = $request->advantage_en;
         $vacancy->date = $request->date;
-
+        $vacancy['slug'] = $new_slug;
         $vacancy->save();
-
         return redirect()->route('admin.vacancy.index');
     }
 

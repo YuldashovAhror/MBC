@@ -37,7 +37,7 @@
                         <td >{{$vacan->date}}</td>
                         <td >{{$vacan->name_uz}}</td>
                         <td>
-                            <form action="{{route('admin.vacancy.edit', $vacan->id)}}" method="GET" style="display: inline;">
+                            <form action="{{route('admin.vacancy.edit', $vacan->slug)}}" method="GET" style="display: inline;">
                                 <button class="btn btn-xs btn-primary" type="submit"><i data-feather="edit"></i></button>
                             </form>
                             

@@ -46,7 +46,7 @@
                         <td>{!!$project->description_ru!!}</td>
                         <td>{!!$project->description_en!!}</td>
                         <td>
-                            <form action="{{route('admin.projects.edit', $project->id)}}" method="GET" style="display: inline;">
+                            <form action="{{route('admin.projects.edit', $project->slug)}}" method="GET" style="display: inline;">
                                 <button class="btn btn-xs btn-primary" type="submit"><i data-feather="edit"></i></button>
                             </form>
                             

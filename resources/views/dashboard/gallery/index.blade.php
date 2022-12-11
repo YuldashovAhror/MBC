@@ -39,7 +39,7 @@
                                     <td>{{$gallery->title_ru}}</td>
                                     <td>{{$gallery->title_en}}</td>
                                     <td>
-                                        <form action="{{route('admin.gallerys.edit', $gallery->id)}}" method="GET" style="display: inline;">
+                                        <form action="{{route('admin.gallerys.edit', $gallery->slug)}}" method="GET" style="display: inline;">
                                             <button class="btn btn-xs btn-primary" type="submit"><i data-feather="edit"></i></button>
                                         </form>
                                         

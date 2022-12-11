@@ -41,7 +41,7 @@
                             <div class="vacancy-item__date">
                                 {{$vacancy->date}}
                             </div>
-                            <a href="{{route('career.single', $vacancy->id)}}" class="vacancy-item__link" onclick="choose({{ $vacancy->id }})">
+                            <a href="{{route('career.single', $vacancy->slug)}}" class="vacancy-item__link" onclick="choose({{ $vacancy->id }})">
                                 {{__('asd.Подробнее')}}
                             </a>
                         </div>

@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="card-body">
-        <form action="{{route('admin.news.update', $new->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('admin.news.update', $new->slug)}}" method="POST" enctype="multipart/form-data">
             @csrf
             {{ method_field('put') }}
             <div class="row g-4">

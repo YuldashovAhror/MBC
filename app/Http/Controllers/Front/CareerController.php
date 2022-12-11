@@ -28,10 +28,10 @@ class CareerController extends Controller
         ]);
     }
 
-    public function careersingle($id){
+    public function careersingle($slug){
 
         // dd($id);
-        $vacancy = Vacancy::find($id);
+        $vacancy = Vacancy::where('slug', $slug)->first();
 
         return view('front.career-single', [
             'vacancy'=>$vacancy
@@ -64,9 +64,9 @@ class CareerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::where('slug', $slug)->first();
 
         return view('front.blog-single',[
             'blog'=>$blog

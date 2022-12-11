@@ -68,7 +68,7 @@
 								{!!$new['description_'.$lang]!!} 
 							</div>
 							<div class="news-item__btn">
-								<a href="{{route('news.show', $new->id)}}">
+								<a href="{{route('news.show', $new->slug)}}">
 									{{__('asd.Подробнее')}}
 								</a>
 							</div>

@@ -13,10 +13,10 @@ class NewsController extends Controller
         return view('front.news');
     }
 
-    public function show($id){
+    public function show($slug){
 
         // dd('asd');
-        $new = NewPromotion::find($id);
+        $new = NewPromotion::where('slug', $slug)->first();
         $news = NewPromotion::paginate(3);
 
         return view('front.news-single', [
