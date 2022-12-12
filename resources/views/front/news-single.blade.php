@@ -59,7 +59,7 @@
 								{{$new['title_'.$lang]}}
 							</div>
 							<div class="news-item__img">
-								<img src="{{$new->photo}}" alt="news">
+								<img src="{{$new->photo_main}}" alt="news">
 							</div>
 							<div class="news-item__line">
 								<img src="/img/news.svg" alt="ico">

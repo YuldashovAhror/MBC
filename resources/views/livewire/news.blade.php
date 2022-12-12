@@ -21,11 +21,8 @@
             </ul>
         </div>
     </div>
-
     <div class="news-tabs">
-
         <!-- СКОЛЬКО ЛЕТ СТОЛЬКО ТАБОВ -->
-
         <div class="news-tab">
             <div class="news-page__wrap">
                 @foreach($news as $new)
@@ -42,7 +39,7 @@
                         {{$new['title_'.$lang]}}
                     </div>
                     <div class="news-item__img">
-                        <img src="{{$new->photo}}" alt="news">
+                        <img src="{{$new->photo_main}}" alt="news">
                     </div>
                     <div class="news-item__line">
                         <img src="img/news.svg" alt="ico">

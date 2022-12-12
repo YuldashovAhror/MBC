@@ -368,10 +368,10 @@
                                 </li> --}}
                                 <?php $news_years = App\Models\NewPromotion::select('year')->distinct()->orderByDesc('year')->get(); ?>
                                 @foreach($news_years as $key=>$news_year)
-                                    
-                                        <li> 
-                                            {{ $news_year->year }}
-                                        </li>
+ 
+                                    <li> 
+                                        {{ $news_year->year }}
+                                    </li>
                                     
                                 @endforeach
                             </ul>
@@ -413,13 +413,13 @@
                                                 {{$new['title_'.$lang]}}
                                             </div>
                                             <div class="news-item__img">
-                                                <img src="{{$new->photo}}" alt="news">
+                                                <img src="{{$new->photo_main}}" alt="news">
                                             </div>
                                             <div class="news-item__line">
                                                 <img src="img/news.svg" alt="ico">
                                             </div>
                                             <div class="news-item__text">
-                                                
+                                                {!!substr($new['description_'.$lang], 0, 300)!!}
                                             </div>
                                             <div class="news-item__btn">
                                                 <a href="{{route('news.show', $new->slug)}}">

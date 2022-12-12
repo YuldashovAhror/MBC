@@ -199,8 +199,7 @@
 	</section>
 
 	<!-- TEAM -->
-
-	<section class="team">
+	{{-- <section class="team">
 		<div class="container">
 			<div class="career-head">
 				<h2 class="team__title career-title">
@@ -228,31 +227,30 @@
 			</div>
 		</div>
 		<div class="team-carousel owl-carousel">
-			@foreach ($teams as $team)
+			{{-- @foreach ($teams as $team)
 				
-			<div class="team-carousel__item">
-				<div class="team-carousel__video">
-					<iframe width="560" height="315" src="{{ $team->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-					{{-- <img src="img/team1.jpg" alt=""> --}}
-				</div>
-				<div class="team-carousel__info">
-					<div class="team-carousel__photo">
-						<img src="{{$team->photo}}" alt="people">
-					</div>
-					<div class="team-carousel__wrap">
-						<div class="team-carousel__name">
-							{{$team['name_'.$lang]}}
+				<div class="team-carousel__item">
+					<div class="team-carousel__video">
+						<iframe width="560" height="315" src="{{ $team->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						{{-- <img src="img/team1.jpg" alt=""> --}}
+					{{--</div>
+					<div class="team-carousel__info">
+						<div class="team-carousel__photo">
+							<img src="{{$team->photo}}" alt="people">
 						</div>
-						<div class="team-carousel__pos">
-							{{$team['position_'.$lang]}}
+						<div class="team-carousel__wrap">
+							<div class="team-carousel__name">
+								{{$team['name_'.$lang]}}
+							</div>
+							<div class="team-carousel__pos">
+								{{$team['position_'.$lang]}}
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			@endforeach
-		</div>
-	</section>
-
+			@endforeach --}}
+		{{--</div>
+	</section> --}}
 	<!-- CAREER advantages-->
 
 	<section class="career-advantages" id="advantages">

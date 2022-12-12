@@ -16,11 +16,11 @@
                     
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Второе фото</th>
+                            <th scope="col"> фото</th>
                             <th scope="col">Дата</th>
                             <th scope="col">Заголовок Uz</th>
                             <th scope="col">Тип</th>
-                            <th scope="col">Фото</th>
+                            <th scope="col">Второе фото</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -33,11 +33,11 @@
                             {{-- @dd($new->photo_main) --}}
                             <tr>
                         <th scope="row">{{$num++}}</th>
-                        <td><img src="{{$new->photo}}" alt="" style="width: 100px; height: 100px;"></td>
+                        <td><img src="{{$new->photo_main}}" alt="" style="width: 100px; height: 100px;"></td>
                         <td >{{$new->date}}</td>
                         <td >{{$new->title_uz}}</td>
                         <td>{{$new->type}}</td>
-                        <td><img src="{{$new->photo_main}}" alt="" style="width: 100px; height: 100px;"></td>
+                        <td><img src="{{$new->photo}}" alt="" style="width: 100px; height: 100px;"></td>
                         <td>
                             <form action="{{route('admin.news.edit', $new->slug)}}" method="GET" style="display: inline;">
                                 <button class="btn btn-xs btn-primary" type="submit"><i data-feather="edit"></i></button>
