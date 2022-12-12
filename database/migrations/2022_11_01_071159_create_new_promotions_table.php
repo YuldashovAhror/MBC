@@ -28,6 +28,7 @@ return new class extends Migration
             $table->text('description_en');
             $table->string('photo');
             $table->integer('year');
+            $table->string('slug');
             $table->timestamps();
         });
     }

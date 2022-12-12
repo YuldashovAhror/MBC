@@ -208,7 +208,7 @@
 						{{__('asd.Работа у нас — это:')}}
 					</div>
 					<div class="career-single__text">
-						{{$vacancy['advantage_'.$lang]}}
+						{!!$vacancy['advantage_'.$lang]!!}
 					</div>
 				</div>
 				<div class="career-form">

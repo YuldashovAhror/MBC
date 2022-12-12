@@ -419,7 +419,7 @@
 							{!!$blog['description_'.$lang]!!}
 						</div>
 						<div class="blog-carousel__link">
-							<a href="{{route('career.show', $blog->slug)}}">{{__('asd.Подробнее')}}</a>
+							<a href="{{route('blog.show', $blog->slug)}}">{{__('asd.Подробнее')}}</a>
 						</div>
 					</div>
 				</div>

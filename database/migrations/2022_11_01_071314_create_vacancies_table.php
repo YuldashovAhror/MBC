@@ -30,6 +30,7 @@ return new class extends Migration
             $table->text('advantage_uz')->nullable();
             $table->text('advantage_ru')->nullable();
             $table->text('advantage_en')->nullable();
+            $table->string('slug');
             $table->timestamps();
         });
     }

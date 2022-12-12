@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('position_ru')->nullable();
             $table->string('position_en')->nullable();
             $table->string('photo');
+            $table->string('slug');
             $table->timestamps();
         });
     }

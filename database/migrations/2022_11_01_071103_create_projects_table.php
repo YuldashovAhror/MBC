@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('description_en')->nullable();
             $table->string('photo');
             $table->string('link');
+            $table->string('slug');
             $table->timestamps();
         });
     }

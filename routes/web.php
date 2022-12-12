@@ -79,16 +79,16 @@ Route::group(['prefix'=>'dashboard'], function (){
 Route::get('/about', [AboutController::class, 'index']);
 /////// Career \\\\\\\
 Route::get('/career', [CareerController::class,'index']);
-Route::get('/career/show/{id}', [CareerController::class,'show'])->name('career.show');
+Route::get('/blog/{slug}', [CareerController::class,'show'])->name('blog.show');
 // Route::get('/career', [CareerController::class,'single'])->name('career.single');
-Route::get('/career/{id}', [CareerController::class,'careersingle'])->name('career.single');
+Route::get('/career/{slug}', [CareerController::class,'careersingle'])->name('career.single');
 /////// Contacts \\\\\\\
 Route::get('/contact', function(){
     return view('front.contact');
 });
 /////// News \\\\\\\
 Route::get('/news', [NewsController::class, 'index']);
-Route::get('/news/show/{id}', [NewsController::class, 'show'])->name('news.show');
+Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 ////// Projects \\\\\\
 Route::get('/projects', [ProjectsController::class, 'index']);
 require __DIR__.'/auth.php';

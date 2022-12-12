@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('description_ru');
             $table->text('description_en');
             $table->string('video_link')->nullable();
+            $table->string('slug');
             $table->timestamps();
         });
     }
