@@ -7,7 +7,7 @@ use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class VacancyController extends Controller
+class VacancyController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -53,11 +53,8 @@ class VacancyController extends Controller
         // dd($request->all());
         $vacancy = new Vacancy();
         if($request->file('photo')){
-            $file= $request->file('photo');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('/Image/vacancy'), $filename);
-            $vacancy['photo']= '/Image/vacancy/'.$filename;
-        }
+            $vacancy['photo'] = $this->photoSave($request->file('photo'), 'image/vacancy');
+        } 
         $slug = str_replace(' ', '_', strtolower($request->name_uz)) . '-' . Str::random(5);
         $vacancy->category_id = $request->category_id;
         $vacancy->name_uz = $request->name_uz;
@@ -118,10 +115,7 @@ class VacancyController extends Controller
             if(is_file(public_path($vacancy->photo))){
                 unlink(public_path($vacancy->photo));
             }
-            $file= $request->file('photo');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('/Image/vacancy'), $filename);
-            $vacancy['photo']= '/Image/vacancy/'.$filename;
+            $vacancy['photo'] = $this->photoSave($request->file('photo'), 'image/vacancy');
         }
         $new_slug = str_replace(' ', '_', strtolower($request->name_uz)) . '-' . Str::random(5);
         $vacancy->category_id = $request->category_id;

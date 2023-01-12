@@ -27,7 +27,7 @@
                     <div class="feedback-form__input">
                         <span>{{__('asd.Тип обращения')}}</span>
                         <select required id="feedcat_id" required="" class="customSelect">
-                            @foreach (App\Models\Feedcat::all() as $cat)
+                        @foreach (App\Models\Feedcat::all() as $cat)
                             <option value="{{ $cat->id }}">{{ $cat['name_'.$lang]}}</option>
                         @endforeach
                         </select>

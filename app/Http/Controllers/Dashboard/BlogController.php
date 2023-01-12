@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBlogRequest;
 use App\Models\Blog;
+use App\Services\BlogService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use App\Http\Resources\ErrorResource;
+use App\Exceptions\Blog\BlogCreateException;
+use Illuminate\Support\Facades\DB;
 
 class BlogController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct()
     {
@@ -45,34 +43,26 @@ class BlogController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBlogRequest $request)
     {
-        $validated = $request->validate([
-            'title_uz' => 'required|max:255',
-            'title_ru' => 'required|max:255',
-            'title_en' => 'required|max:255',
-            'description_uz' => 'required',
-            'description_uz' => 'required',
-            'description_uz' => 'required',
-        ]);
-        // dd('asd');
-        $blogs = new Blog();
-        if($request->file('photo')){
-            $blogs['photo'] = $this->photoSave($request->file('photo'), 'image/blogs');
+
+        DB::beginTransaction();
+        try {
+            
+            $blog = (new BlogService($request))->create();
+        } catch (BlogCreateException | \Exception $exception) {
+            DB::rollBack();
+
+            return 'Error occured';
+            // return (new ErrorResource("Template create error {$exception->getMessage()}", 'Template create error. Try again'))->response()->setStatusCode(403);
         }
-        $slug = str_replace(' ', '_', strtolower($request->title_uz)) . '-' . Str::random(5);
-        $blogs->title_uz = $request->title_uz;
-        $blogs->title_ru = $request->title_ru;
-        $blogs->title_en = $request->title_en;
-        $blogs->video_link = $request->video_link;
-        $blogs->description_uz = $request->description_uz;
-        $blogs->description_ru = $request->description_ru;
-        $blogs->description_en = $request->description_en;
-        $blogs['slug'] = $slug;
-        // $blogs->slug = Str::slug($request->title_uz);
-        $blogs->save();
+
+        DB::commit();
+
         return redirect()->route('admin.blogs.index');
     }
+
+
     /**
      * Display the specified resource.
      *

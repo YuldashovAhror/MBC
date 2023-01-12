@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Value;
 use Illuminate\Http\Request;
 
-class ValueController extends Controller
+class ValueController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -57,11 +57,8 @@ class ValueController extends Controller
         $values = new Value();
         
         if($request->file('photo')){
-            $file= $request->file('photo');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('/Image/value'), $filename);
-            $values['photo']= '/Image/value/'.$filename;
-        }        
+            $values['photo'] = $this->photoSave($request->file('photo'), 'image/value');
+        }   
         $values->title_uz = $request->title_uz;
         $values->title_ru = $request->title_ru;
         $values->title_en = $request->title_en;
@@ -110,17 +107,12 @@ class ValueController extends Controller
     {
         // dd('asd');
         $values = Value::find($id);
-        
         if($request->file('photo')){
-
             if(is_file(public_path($values->photo))){
                 unlink(public_path($values->photo));
             }
-            $file= $request->file('photo');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('/Image/value'), $filename);
-            $values['photo']= '/Image/value/'.$filename;
-        }        
+            $values['photo'] = $this->photoSave($request->file('photo'), 'image/value');
+        }
         $values->title_uz = $request->title_uz;
         $values->title_ru = $request->title_ru;
         $values->title_en = $request->title_en;

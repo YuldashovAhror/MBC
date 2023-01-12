@@ -7,12 +7,6 @@
 <div class="card">
     <div class="card-header pb-0">
         <h5>Добавить</h5>
-        {{-- @if(Session::has('message'))
-        Success
-        @endif --}}
-        {{-- <div class="alert alert-secondary" role="alert">
-            This is a primary alert—check it out!
-        </div> --}}
     </div>
     <div class="card-body">
         <form action="{{route('admin.status.store')}}" method="POST">
