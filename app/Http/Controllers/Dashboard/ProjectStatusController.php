@@ -21,12 +21,10 @@ class ProjectStatusController extends Controller
 
         $this->projectControllerdestroy = $projectController;
     }
-
     public function index()
     {
         //
     }
-
     /**
      * Show the form for creating a new resource.
      *
