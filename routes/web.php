@@ -44,13 +44,6 @@ Route::group(['prefix'=>'dashboard'], function (){
 
     Route::name('admin.')->group(function(){
         Route::resource('/blogs', BlogController::class);
-        // Route::get('/feedback', function (\Illuminate\Http\Request $request){
-        //     $token = '5677233420:AAG-zggjCTyHB_Gg96L_YBayVbUmS581Ato';
-        //     $text = "Имя: ". $request->name ."\n" . "Телефон: " . $request->phone . "Телефон: " . $request->feedcat_id;
-        //     $mbc = ['text' => $text,'chat_id' => '-1001769907915'];
-        //     file_get_contents("https://api.telegram.org/bot$token/sendMessage?" . http_build_query($mbc));
-        // });
-        // Route::get('/feedback/index', [FeedbackController::class, 'index'])->name('admin.feedback.index');
         Route::get('/feedback', [FeedbackController::class, 'store']);
         Route::resource('/feedback', FeedbackController::class);
         Route::resource('/gallerys', GallaryController::class);
